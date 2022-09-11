@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "2.9.7",
+    "@tanstack/react-query": "^4.3.3",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -36,9 +37,9 @@
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.26",
     "babel-loader": "^8.2.5",
-    "is-plain-object": "^5.0.0",
     "eslint": "^8.23.0",
     "eslint-config-next": "^12.3.0",
+    "is-plain-object": "^5.0.0",
     "typescript": "^4.8.3"
   },
   "keywords": []

@@ -5,6 +5,4 @@ export default {
   component: Home,
 };
 
-const Template = (args) => <Home />;
-
-export const HomeUI = Template.bind({});
+export const HomePage = (args) => <Home />;
