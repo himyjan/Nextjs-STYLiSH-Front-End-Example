@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 
 import Link from 'next/link';
 
+import Image from 'next/future/image';
+
 import styled from 'styled-components';
 
 import api from '../../api/api';
@@ -133,12 +135,13 @@ function Carousel() {
           key={index}
           href={`/products/${product_id}`}
         >
-          <Story>
+          {/* <Story>
             <StoryContent>
-              {story.split('\r\n').slice(0, 3).join('\r\n')}
+              {(story as string).split('\r\n').slice(0, 3).join('\r\n')}
             </StoryContent>
-            <StoryTitle>{story.split('\r\n')[3]}</StoryTitle>
-          </Story>
+            <StoryTitle>{(story as string).split('\r\n')[3]}</StoryTitle>
+          </Story> */}
+          <Image src={picture} alt={''} width={100} height={100} />
         </Campaign>
       ))}
       <Dots>

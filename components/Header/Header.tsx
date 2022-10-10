@@ -242,7 +242,7 @@ const categories = [
   },
 ];
 
-function Header({ cartItems }) {
+function Header() {
   const [inputValue, setInputValue] = useState('');
   const router = useRouter();
   const path = router.asPath;

@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Sans TC', sans-serif;
   }
 
-  #root {
+  #__next {
     min-height: 100vh;
     padding: 140px 0 115px;
     position: relative;

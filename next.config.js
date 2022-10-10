@@ -5,6 +5,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-}
+  images: {
+    domains: ['api.appworks-school.tw'],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
