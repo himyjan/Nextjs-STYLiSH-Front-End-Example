@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 import styled from 'styled-components';
 import ReactLoading from 'react-loading';
 
@@ -104,10 +107,11 @@ const Loading = styled(ReactLoading)`
 function Products() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchParams] = useSearchParams();
+  const router = useRouter();
+  const path = router.asPath;
 
-  const keyword = searchParams.get('keyword');
-  const category = searchParams.get('category') || 'all';
+  const keyword = path.replace('keyword=', '');
+  const category = path.replace('category=', '') || 'all';
 
   useEffect(() => {
     let nextPaging = 0;
@@ -150,7 +154,7 @@ function Products() {
   return (
     <Wrapper>
       {products.map(({ id, main_image, colors, title, price }) => (
-        <Product key={id} to={`/products/${id}`}>
+        <Product key={id} href={`/products/${id}`}>
           <ProductImage src={main_image} />
           <ProductColors>
             {colors.map(({ code }) => (

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 
 import add from './add.png';

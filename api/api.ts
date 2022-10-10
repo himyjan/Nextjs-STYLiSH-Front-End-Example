@@ -6,21 +6,22 @@ const api = {
     const response = await $fetch(
       `${this.hostname}/products/${category}?paging=${paging}`
     );
-    return await response.json();
+    return await response;
   },
   async getCampaigns() {
     const response = await $fetch(`${this.hostname}/marketing/campaigns`);
-    return await response.json();
+    console.log(response);
+    return await response;
   },
   async searchProducts(keyword, paging) {
     const response = await $fetch(
       `${this.hostname}/products/search?keyword=${keyword}&paging=${paging}`
     );
-    return await response.json();
+    return await response;
   },
   async getProduct(id) {
     const response = await $fetch(`${this.hostname}/products/details?id=${id}`);
-    return await response.json();
+    return await response;
   },
   async checkout(data, jwtToken) {
     const response = await $fetch(`${this.hostname}/order/checkout`, {
@@ -31,7 +32,7 @@ const api = {
       }),
       method: 'POST',
     });
-    return await response.json();
+    return await response;
   },
   async signin(data) {
     const response = await $fetch(`${this.hostname}/user/signin`, {
@@ -41,7 +42,7 @@ const api = {
       }),
       method: 'POST',
     });
-    return await response.json();
+    return await response;
   },
   async getProfile(jwtToken) {
     const response = await $fetch(`${this.hostname}/user/profile`, {
@@ -50,7 +51,7 @@ const api = {
         Authorization: `Bearer ${jwtToken}`,
       }),
     });
-    return await response.json();
+    return await response;
   },
 };
 

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+
+import Link from 'next/link';
+
 import styled from 'styled-components';
 
 import api from '../../api/api';
@@ -129,7 +131,7 @@ function Carousel() {
           $isActive={index === activeCampaignIndex}
           $backgroundImageUrl={picture}
           key={index}
-          to={`/products/${product_id}`}
+          href={`/products/${product_id}`}
         >
           <Story>
             <StoryContent>
