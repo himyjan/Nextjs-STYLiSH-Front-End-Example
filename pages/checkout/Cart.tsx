@@ -206,7 +206,7 @@ const ItemPriceValue = styled.div`
 const DeleteButton = styled.div`
   width: 40px;
   height: 40px;
-  background-image: url(${trash});
+  background-image: url(${trash.src});
   background-size: contain;
   cursor: pointer;
 
@@ -217,7 +217,7 @@ const DeleteButton = styled.div`
 `;
 
 function Cart() {
-  const cartItemsState = useOutletContext();
+  // const cartItemsState = useOutletContext();
   const cartItems = cartItemsState[0];
   const setCartItems = cartItemsState[1];
 

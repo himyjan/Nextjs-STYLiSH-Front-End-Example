@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/future/image';
 
 import styled from 'styled-components';
 import ReactLoading from 'react-loading';
@@ -14,7 +15,6 @@ const Wrapper = styled.div`
   padding: 70px 0 46px;
   display: flex;
   flex-wrap: wrap;
-
   @media screen and (max-width: 1279px) {
     padding: 15px 21px 6px;
   }
@@ -25,7 +25,6 @@ const Product = styled(Link)`
   margin: 0 20px 50px;
   flex-shrink: 0;
   text-decoration: none;
-
   @media screen and (max-width: 1279px) {
     width: calc((100% - 12px) / 2);
     margin: 0 3px 24px;
@@ -40,7 +39,6 @@ const ProductImage = styled.img`
 const ProductColors = styled.div`
   margin-top: 20px;
   display: flex;
-
   @media screen and (max-width: 1279px) {
     margin-top: 8px;
   }
@@ -55,15 +53,12 @@ const ProductColor = styled.div<ProductColorProp>`
   height: 24px;
   box-shadow: 0px 0px 1px #bbbbbb;
   background-color: ${(props) => props.$colorCode};
-
   @media screen and (max-width: 1279px) {
     width: 12px;
     height: 12px;
   }
-
   & + & {
     margin-left: 10px;
-
     @media screen and (max-width: 1279px) {
       margin-left: 6px;
     }
@@ -76,7 +71,6 @@ const ProductTitle = styled.div`
   letter-spacing: 4px;
   color: #3f3a3a;
   line-height: 24px;
-
   @media screen and (max-width: 1279px) {
     margin-top: 10px;
     font-size: 12px;
@@ -91,7 +85,6 @@ const ProductPrice = styled.div`
   letter-spacing: 4px;
   color: #3f3a3a;
   line-height: 24px;
-
   @media screen and (max-width: 1279px) {
     margin-top: 8px;
     font-size: 12px;
