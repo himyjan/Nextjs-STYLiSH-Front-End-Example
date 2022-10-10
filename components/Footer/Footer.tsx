@@ -138,7 +138,7 @@ function Footer() {
         </SiteLinks>
         <SocialLinks>
           {[line, twitter, facebook].map((icon, index) => (
-            <SocialLink key={index} icon={icon} />
+            <SocialLink key={index} icon={icon.src} />
           ))}
         </SocialLinks>
         <Copywright>© 2022. All rights reserved.</Copywright>

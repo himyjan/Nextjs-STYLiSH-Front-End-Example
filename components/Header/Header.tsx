@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 const Logo = styled.a`
   width: 258px;
   height: 48px;
-  background-image: url(${logo});
+  background-image: url(${logo.src});
   background-size: contain;
 
   @media screen and (max-width: 1279px) {
@@ -110,7 +110,7 @@ const SearchInput = styled.input`
   border-radius: 20px;
   padding: 6px 45px 6px 20px;
   border: solid 1px #979797;
-  background-image: url(${search});
+  background-image: url(${search.src});
   background-size: 44px;
   background-position: 160px center;
   background-repeat: no-repeat;
@@ -190,18 +190,18 @@ const PageLinkIcon = styled.div`
 `;
 
 const PageLinkCartIcon = styled(PageLinkIcon)`
-  background-image: url(${cart});
+  background-image: url(${cart.src});
 
   @media screen and (max-width: 1279px) {
-    background-image: url(${cartMobile});
+    background-image: url(${cartMobile.src});
   }
 `;
 
 const PageLinkProfileIcon = styled(PageLinkIcon)`
-  background-image: url(${profile});
+  background-image: url(${profile.src});
 
   @media screen and (max-width: 1279px) {
-    background-image: url(${profileMobile});
+    background-image: url(${profileMobile.src});
   }
 `;
 

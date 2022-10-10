@@ -105,11 +105,11 @@ const Button = styled.div`
 `;
 
 const DecrementButton = styled(Button)`
-  background-image: url(${minus});
+  background-image: url(${minus.src});
 `;
 
 const IncrementButton = styled(Button)`
-  background-image: url(${add});
+  background-image: url(${add.src});
 `;
 
 const AddToCart = styled.button`
