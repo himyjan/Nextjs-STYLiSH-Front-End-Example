@@ -31,6 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <GlobalStyle />
         <Header />
         <Footer />
+        <Component {...pageProps} />
       </ThemeProvider>
     </>
   );
