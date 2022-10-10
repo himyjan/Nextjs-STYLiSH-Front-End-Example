@@ -8,8 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "sb dev -p 6006",
+    "build-storybook": "sb build"
   },
   "dependencies": {
     "@hookform/resolvers": "2.9.8",
@@ -25,23 +25,23 @@
     "zod": "3.19.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.3",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-webpack5": "^6.5.12",
-    "@storybook/manager-webpack5": "^6.5.12",
-    "@storybook/react": "^6.5.12",
+    "@mdx-js/react": "^2.1.4",
+    "@storybook/addon-essentials": "^7.0.0-alpha.35",
+    "@storybook/addon-interactions": "^7.0.0-alpha.35",
+    "@storybook/addon-links": "^7.0.0-alpha.35",
+    "@storybook/builder-vite": "^7.0.0-alpha.35",
+    "@storybook/mdx2-csf": "^0.0.4-canary.14.04ffbe8.0",
+    "@storybook/react": "^7.0.0-alpha.35",
+    "@storybook/react-vite": "^7.0.0-alpha.35",
     "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.26",
-    "babel-loader": "^8.2.5",
     "eslint": "^8.25.0",
     "eslint-config-next": "^12.3.1",
-    "is-plain-object": "^5.0.0",
-    "typescript": "^4.8.4"
+    "storybook": "^7.0.0-alpha.35",
+    "typescript": "^4.8.4",
+    "vite": "^3.1.6"
   },
   "keywords": []
 }
