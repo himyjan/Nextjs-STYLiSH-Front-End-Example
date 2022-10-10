@@ -1,4 +1,4 @@
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import { state } from '../../types/stateType';
@@ -28,16 +28,16 @@ const BackButton = styled.button`
 
 function ThankYou() {
   const { state } = useLocation();
-  const navigate = useNavigate();
+  const router = useRouter();
 
-  if (!state) return <Navigate to="/" replace />;
+  if (!state) return <Navigate to='/' replace />;
 
   return (
     <Wrapper>
       <Title>感謝您的購買，我們會盡快將商品送達！</Title>
       <Content>請記住以下訂單編號，以便查詢</Content>
       <Content>{(state as state).orderNumber}</Content>
-      <BackButton onClick={() => navigate('/')}>繼續購物</BackButton>
+      <BackButton onClick={() => router.push('/')}>繼續購物</BackButton>
     </Wrapper>
   );
 }

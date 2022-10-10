@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import logo from './logo.png';
@@ -30,7 +31,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Logo = styled(Link)`
+const Logo = styled.a`
   width: 258px;
   height: 48px;
   background-image: url(${logo});
@@ -149,7 +150,7 @@ const PageLinks = styled.div`
   }
 `;
 
-const PageLink = styled(Link)`
+const PageLink = styled.a`
   @media screen and (max-width: 1279px) {
     width: 50%;
     position: relative;
@@ -243,17 +244,21 @@ const categories = [
 
 function Header({ cartItems }) {
   const [inputValue, setInputValue] = useState('');
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const category = searchParams.get('category');
+  const router = useRouter();
+  const path = router.asPath;
+  const category = path.replace('category=', '');
 
   useEffect(() => {
-    if (category) setInputValue('');
+    if (category) {
+      setInputValue('');
+    }
   }, [category]);
 
   return (
     <Wrapper>
-      <Logo to='/' />
+      <Link prefetch={true} href={'/'} passHref={true}>
+        <Logo />
+      </Link>
       <CategoryLinks>
         {categories.map(({ name, displayText }, index) => (
           <CategoryLink
@@ -264,7 +269,7 @@ function Header({ cartItems }) {
                 top: 0,
                 behavior: 'smooth',
               });
-              navigate(`/?category=${name}`);
+              router.push(`/?category=${name}`);
             }}
           >
             {displayText}
@@ -274,23 +279,29 @@ function Header({ cartItems }) {
       <SearchInput
         onKeyPress={(e) => {
           if (e.key === 'Enter') {
-            navigate(`/?keyword=${inputValue}`);
+            router.push(`/?keyword=${inputValue}`);
           }
         }}
         onChange={(e) => setInputValue(e.target.value)}
         value={inputValue}
       />
       <PageLinks>
-        <PageLink to='/checkout'>
-          <PageLinkCartIcon>
-            <PageLinkIconNumber>{(cartItems as []).length}</PageLinkIconNumber>
-          </PageLinkCartIcon>
-          <PageLinkText>購物車</PageLinkText>
-        </PageLink>
-        <PageLink to='/profile'>
-          <PageLinkProfileIcon />
-          <PageLinkText>會員</PageLinkText>
-        </PageLink>
+        <Link prefetch={true} href={'/checkout'} passHref={true}>
+          <PageLink>
+            <PageLinkCartIcon>
+              <PageLinkIconNumber>
+                {/* {(cartItems as []).length} */}
+              </PageLinkIconNumber>
+            </PageLinkCartIcon>
+            <PageLinkText>購物車</PageLinkText>
+          </PageLink>
+        </Link>
+        <Link prefetch={true} href={'/profile'} passHref={true}>
+          <PageLink>
+            <PageLinkProfileIcon />
+            <PageLinkText>會員</PageLinkText>
+          </PageLink>
+        </Link>
       </PageLinks>
     </Wrapper>
   );

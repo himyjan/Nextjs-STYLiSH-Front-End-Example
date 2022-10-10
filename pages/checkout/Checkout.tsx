@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import api from '../../api/api';
@@ -313,7 +313,7 @@ function Checkout() {
   const cartItemsState = useOutletContext();
   const cartItems = cartItemsState[0];
   const setCartItems = cartItemsState[1];
-  const navigate = useNavigate();
+  const router = useRouter();
   const cardNumberRef = useRef();
   const cardExpirationDateRef = useRef();
   const cardCCVRef = useRef();
@@ -385,7 +385,7 @@ function Checkout() {
     );
     window.alert('付款成功');
     setCartItems([]);
-    navigate('/thankyou', { state: { orderNumber: data.number } });
+    router.push('/thankyou', { state: { orderNumber: data.number } });
   }
 
   return (
