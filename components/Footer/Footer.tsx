@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import line from "./line.png";
-import facebook from "./facebook.png";
-import twitter from "./twitter.png";
+import line from './line.png';
+import facebook from './facebook.png';
+import twitter from './twitter.png';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -63,12 +63,12 @@ const SiteLink = styled.div`
   }
 
   & + &::before {
-    content: "|";
+    content: '|';
     position: absolute;
     left: 0;
 
     @media screen and (max-width: 1279px) {
-      content: "";
+      content: '';
     }
   }
 `;
@@ -83,11 +83,11 @@ const SocialLinks = styled.div`
   }
 `;
 
-interface SocialIocnProp {
+type SocialLinkProp = {
   icon: string;
-}
+};
 
-const SocialLink = styled.div<SocialIocnProp>`
+const SocialLink = styled.div<SocialLinkProp>`
   width: 50px;
   height: 50px;
   background-size: contain;
@@ -130,7 +130,7 @@ function Footer() {
     <Wrapper>
       <Content>
         <SiteLinks>
-          {["關於 Stylish", "服務條款", "隱私政策", "聯絡我們", "FAQ"].map(
+          {['關於 Stylish', '服務條款', '隱私政策', '聯絡我們', 'FAQ'].map(
             (text, index) => (
               <SiteLink key={index}>{text}</SiteLink>
             )
@@ -138,7 +138,7 @@ function Footer() {
         </SiteLinks>
         <SocialLinks>
           {[line, twitter, facebook].map((icon, index) => (
-            <SocialLink key={index} icon={icon.src} />
+            <SocialLink key={index} icon={icon} />
           ))}
         </SocialLinks>
         <Copywright>© 2022. All rights reserved.</Copywright>

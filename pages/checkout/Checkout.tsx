@@ -1,11 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
-import styled from "styled-components";
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import styled from 'styled-components';
 
-import api from "../../utils/api";
-import getJwtToken from "../../utils/getJwtToken";
-import tappay from "../../utils/tappay";
-import Cart from "./Cart";
+import api from '../../api/api';
+import getJwtToken from '../../api/getJwtToken';
+import tappay from '../../api/tappay';
+import Cart from './Cart';
+
+import { Prime } from '../../types/tapPayPrimeType';
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -276,39 +278,41 @@ const CheckoutButton = styled.button`
 
 const formInputs = [
   {
-    label: "收件人姓名",
-    key: "name",
-    text: "務必填寫完整收件人姓名，避免包裹無法順利簽收"
+    label: '收件人姓名',
+    key: 'name',
+    text: '務必填寫完整收件人姓名，避免包裹無法順利簽收',
   },
-  { label: "Email", key: "email" },
-  { label: "手機", key: "phone" },
-  { label: "地址", key: "address" }
+  { label: 'Email', key: 'email' },
+  { label: '手機', key: 'phone' },
+  { label: '地址', key: 'address' },
 ];
 
 const timeOptions = [
   {
-    label: "08:00-12:00",
-    value: "morning"
+    label: '08:00-12:00',
+    value: 'morning',
   },
   {
-    label: "14:00-18:00",
-    value: "afternoon"
+    label: '14:00-18:00',
+    value: 'afternoon',
   },
   {
-    label: "不指定",
-    value: "anytime"
-  }
+    label: '不指定',
+    value: 'anytime',
+  },
 ];
 
 function Checkout() {
   const [recipient, setRecipient] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-    time: ""
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    time: '',
   });
-  const [cartItems, setCartItems] = useOutletContext();
+  const cartItemsState = useOutletContext();
+  const cartItems = cartItemsState[0];
+  const setCartItems = cartItemsState[1];
   const navigate = useNavigate();
   const cardNumberRef = useRef();
   const cardExpirationDateRef = useRef();
@@ -331,7 +335,7 @@ function Checkout() {
   const freight = 30;
 
   async function checkout() {
-    let jwtToken = window.localStorage.getItem("jwtToken");
+    let jwtToken = window.localStorage.getItem('jwtToken');
 
     if (!jwtToken) {
       try {
@@ -341,26 +345,26 @@ function Checkout() {
         return;
       }
     }
-    window.localStorage.setItem("jwtToken", jwtToken);
+    window.localStorage.setItem('jwtToken', jwtToken);
 
     if (cartItems.length === 0) {
-      window.alert("尚未選購商品");
+      window.alert('尚未選購商品');
       return;
     }
 
     if (Object.values(recipient).some((value) => !value)) {
-      window.alert("請填寫完整訂購資料");
+      window.alert('請填寫完整訂購資料');
       return;
     }
 
     if (!tappay.canGetPrime()) {
-      window.alert("付款資料輸入有誤");
+      window.alert('付款資料輸入有誤');
       return;
     }
 
-    const result = await tappay.getPrime();
+    const result: Prime = await tappay.getPrime();
     if (result.status !== 0) {
-      window.alert("付款資料輸入有誤");
+      window.alert('付款資料輸入有誤');
       return;
     }
 
@@ -368,20 +372,20 @@ function Checkout() {
       {
         prime: result.card.prime,
         order: {
-          shipping: "delivery",
-          payment: "credit_card",
+          shipping: 'delivery',
+          payment: 'credit_card',
           subtotal,
           freight,
           total: subtotal + freight,
           recipient,
-          list: cartItems
-        }
+          list: cartItems,
+        },
       },
       jwtToken
     );
-    window.alert("付款成功");
+    window.alert('付款成功');
     setCartItems([]);
-    navigate("/thankyou", { state: { orderNumber: data.number } });
+    navigate('/thankyou', { state: { orderNumber: data.number } });
   }
 
   return (
@@ -422,7 +426,7 @@ function Checkout() {
             {timeOptions.map((option) => (
               <FormCheck key={option.value}>
                 <FormCheckInput
-                  type="radio"
+                  type='radio'
                   checked={recipient.time === option.value}
                   onChange={(e) => {
                     if (e.target.checked)
@@ -438,15 +442,15 @@ function Checkout() {
           <FormLegend>付款資料</FormLegend>
           <FormGroup>
             <FormLabel>信用卡號碼</FormLabel>
-            <FormControl as="div" ref={cardNumberRef} />
+            <FormControl as='div' ref={cardNumberRef} />
           </FormGroup>
           <FormGroup>
             <FormLabel>有效期限</FormLabel>
-            <FormControl as="div" ref={cardExpirationDateRef} />
+            <FormControl as='div' ref={cardExpirationDateRef} />
           </FormGroup>
           <FormGroup>
             <FormLabel>安全碼</FormLabel>
-            <FormControl as="div" ref={cardCCVRef} />
+            <FormControl as='div' ref={cardCCVRef} />
           </FormGroup>
         </FormFieldSet>
       </form>

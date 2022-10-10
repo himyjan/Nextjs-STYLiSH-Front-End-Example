@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
 
-import logo from "./logo.png";
-import search from "./search.png";
-import cart from "./cart.png";
-import cartMobile from "./cart-mobile.png";
-import profile from "./profile.png";
-import profileMobile from "./profile-mobile.png";
+import logo from './logo.png';
+import search from './search.png';
+import cart from './cart.png';
+import cartMobile from './cart-mobile.png';
+import profile from './profile.png';
+import profileMobile from './profile-mobile.png';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -30,10 +30,10 @@ const Wrapper = styled.div`
   }
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
   width: 258px;
   height: 48px;
-  background-image: url(${logo.src});
+  background-image: url(${logo});
   background-size: contain;
 
   @media screen and (max-width: 1279px) {
@@ -44,8 +44,6 @@ const Logo = styled.div`
 
 const CategoryLinks = styled.div`
   margin: 16px 0 0 57px;
-  display: flex;
-  flex-direction: row;
 
   @media screen and (max-width: 1279px) {
     margin: 0;
@@ -59,25 +57,25 @@ const CategoryLinks = styled.div`
   }
 `;
 
-interface linkProp {
+type CategoryLinkProp = {
   $isActive: boolean;
-}
+};
 
-const CategoryLink = styled.div<linkProp>`
+const CategoryLink = styled.a<CategoryLinkProp>`
   font-size: 20px;
   letter-spacing: 30px;
   padding-left: 39px;
   padding-right: 11px;
   position: relative;
   text-decoration: none;
-  color: ${(props) => (props.$isActive ? "#8b572a" : "#3f3a3a")};
+  color: ${(props) => (props.$isActive ? '#8b572a' : '#3f3a3a')};
 
   @media screen and (max-width: 1279px) {
     font-size: 16px;
     letter-spacing: normal;
     padding: 0;
     text-align: center;
-    color: ${(props) => (props.$isActive ? "white" : "#828282")};
+    color: ${(props) => (props.$isActive ? 'white' : '#828282')};
     line-height: 50px;
     flex-grow: 1;
   }
@@ -91,7 +89,7 @@ const CategoryLink = styled.div<linkProp>`
   }
 
   & + &::before {
-    content: "|";
+    content: '|';
     position: absolute;
     left: 0;
     color: #3f3a3a;
@@ -111,7 +109,7 @@ const SearchInput = styled.input`
   border-radius: 20px;
   padding: 6px 45px 6px 20px;
   border: solid 1px #979797;
-  background-image: url(${search.src});
+  background-image: url(${search});
   background-size: 44px;
   background-position: 160px center;
   background-repeat: no-repeat;
@@ -151,7 +149,7 @@ const PageLinks = styled.div`
   }
 `;
 
-const PageLink = styled.div`
+const PageLink = styled(Link)`
   @media screen and (max-width: 1279px) {
     width: 50%;
     position: relative;
@@ -171,7 +169,7 @@ const PageLink = styled.div`
 
   & + &::before {
     @media screen and (max-width: 1279px) {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       width: 1px;
@@ -191,18 +189,18 @@ const PageLinkIcon = styled.div`
 `;
 
 const PageLinkCartIcon = styled(PageLinkIcon)`
-  background-image: url(${cart.src});
+  background-image: url(${cart});
 
   @media screen and (max-width: 1279px) {
-    background-image: url(${cartMobile.src});
+    background-image: url(${cartMobile});
   }
 `;
 
 const PageLinkProfileIcon = styled(PageLinkIcon)`
-  background-image: url(${profile.src});
+  background-image: url(${profile});
 
   @media screen and (max-width: 1279px) {
-    background-image: url(${profileMobile.src});
+    background-image: url(${profileMobile});
   }
 `;
 
@@ -230,37 +228,32 @@ const PageLinkText = styled.div`
 
 const categories = [
   {
-    name: "women",
-    displayText: "女裝"
+    name: 'women',
+    displayText: '女裝',
   },
   {
-    name: "men",
-    displayText: "男裝"
+    name: 'men',
+    displayText: '男裝',
   },
   {
-    name: "accessories",
-    displayText: "配件"
-  }
+    name: 'accessories',
+    displayText: '配件',
+  },
 ];
 
-async function getServerSideProps(context) {
-  const { slug } = context.params;
-
-  // Do whatever you need with `slug`
-  // ...
-}
-
-function Header() {
-  const [inputValue, setInputValue] = useState("");
-  const category = "all";
+function Header({ cartItems }) {
+  const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('category');
 
   useEffect(() => {
-    if (category) setInputValue("");
+    if (category) setInputValue('');
   }, [category]);
 
   return (
     <Wrapper>
-      <Logo />
+      <Logo to='/' />
       <CategoryLinks>
         {categories.map(({ name, displayText }, index) => (
           <CategoryLink
@@ -269,32 +262,32 @@ function Header() {
             onClick={() => {
               window.scrollTo({
                 top: 0,
-                behavior: "smooth"
+                behavior: 'smooth',
               });
-              // navigate(`/?category=${name}`);
+              navigate(`/?category=${name}`);
             }}
           >
-            {displayText.toString()}
+            {displayText}
           </CategoryLink>
         ))}
       </CategoryLinks>
       <SearchInput
         onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            // navigate(`/?keyword=${inputValue}`);
+          if (e.key === 'Enter') {
+            navigate(`/?keyword=${inputValue}`);
           }
         }}
         onChange={(e) => setInputValue(e.target.value)}
         value={inputValue}
       />
       <PageLinks>
-        <PageLink>
+        <PageLink to='/checkout'>
           <PageLinkCartIcon>
-            <PageLinkIconNumber>1</PageLinkIconNumber>
+            <PageLinkIconNumber>{(cartItems as []).length}</PageLinkIconNumber>
           </PageLinkCartIcon>
           <PageLinkText>購物車</PageLinkText>
         </PageLink>
-        <PageLink>
+        <PageLink to='/profile'>
           <PageLinkProfileIcon />
           <PageLinkText>會員</PageLinkText>
         </PageLink>

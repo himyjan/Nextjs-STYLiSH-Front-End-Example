@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
 
-import api from "../../utils/api";
-import ProductVariants from "./ProductVariants";
+import api from '../../api/api';
+import ProductVariants from './ProductVariants';
+
+import { Product as ProductType } from '../../types/productType';
 
 const Wrapper = styled.div`
   max-width: 960px;
@@ -142,7 +144,7 @@ const StoryTitle = styled.div`
   }
 
   &::after {
-    content: "";
+    content: '';
     height: 1px;
     flex-grow: 1;
     background-color: #3f3a3a;
@@ -191,7 +193,7 @@ const Image = styled.img`
 `;
 
 function Product() {
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState<ProductType>();
   const { id } = useParams();
 
   useEffect(() => {
