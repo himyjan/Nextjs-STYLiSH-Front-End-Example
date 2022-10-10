@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Product = styled(Link)`
+const Product = styled.a`
   width: calc((100% - 120px) / 3);
   margin: 0 20px 50px;
   flex-shrink: 0;
@@ -96,8 +96,27 @@ const ProductPrice = styled.div`
 const Loading = styled(ReactLoading)`
   margin: 0 auto;
 `;
+const useIntersectionObserver = (ref, options) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
-function Products() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsIntersecting(entry.isIntersecting);
+    }, options);
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      // observer.unobserve(ref.current);
+    };
+  }, [options, ref]);
+
+  return isIntersecting;
+};
+
+const Products = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -106,61 +125,117 @@ function Products() {
   const keyword = path.replace('keyword=', '');
   const category = path.replace('category=', '') || 'all';
 
-  useEffect(() => {
-    let nextPaging = 0;
-    let isFetching = false;
+  const [savedCategory, setSavedCategory] = useState(category);
+  const [nextPaging, setNextPaging] = useState(0);
+  const isFetching = useRef(false);
 
-    async function fetchProducts() {
-      isFetching = true;
-      setIsLoading(true);
-      const response = keyword
-        ? await api.searchProducts(keyword, nextPaging)
-        : await api.getProducts(category, nextPaging);
-      if (nextPaging === 0) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  function fetchProducts() {
+    isFetching.current = true;
+    setIsLoading(true);
+
+    const loading = async (apiJson) => {
+      const response = await apiJson;
+      if (nextPaging === 0 || savedCategory !== category || keyword) {
         setProducts(response.data);
-      } else {
+        setSavedCategory(category);
+      } else if (nextPaging !== undefined) {
         setProducts((prev) => [...prev, ...response.data]);
       }
-      nextPaging = response.next_paging;
-      isFetching = false;
+
+      setNextPaging(response.next_paging);
+      isFetching.current = false;
       setIsLoading(false);
-    }
+    };
 
-    async function scrollHandler() {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        if (nextPaging === undefined) return;
-        if (isFetching) return;
-
-        fetchProducts();
+    if (keyword) {
+      setNextPaging(0);
+      loading(api.searchProducts(keyword, 0));
+    } else {
+      if (savedCategory !== category) {
+        setNextPaging(0);
+        loading(api.getProducts(category, 0));
+      } else {
+        loading(api.getProducts(category, nextPaging));
       }
     }
+  }
 
+  useEffect(() => {
     fetchProducts();
-
-    window.addEventListener('scroll', scrollHandler);
-
-    return () => {
-      window.removeEventListener('scroll', scrollHandler);
-    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keyword, category]);
 
+  const ref = useRef();
+  const onScreen = useIntersectionObserver(ref, { threshold: 0.5 });
+
+  useEffect(() => {
+    if (!onScreen) return;
+    if (nextPaging === undefined) return;
+    if (isFetching.current) return;
+
+    fetchProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onScreen]);
+
+  // useEffect(() => {
+  //  async function fetchProducts() {
+  //     isFetching = true;
+  //     setIsLoading(true);
+  //     const response = keyword
+  //       ? await api.searchProducts(keyword, nextPaging)
+  //       : await api.getProducts(category, nextPaging);
+  //     if (nextPaging === 0) {
+  //       setProducts(response.data);
+  //     } else {
+  //       setProducts((prev) => [...prev, ...response.data]);
+  //     }
+  //     nextPaging = response.next_paging;
+  //     isFetching = false;
+  //     setIsLoading(false);
+  //   }
+  //   async function scrollHandler() {
+  //     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+  //       if (nextPaging === undefined) return;
+  //       if (isFetching) return;
+
+  //       fetchProducts();
+  //     }
+  //   }
+
+  //   fetchProducts();
+
+  //   window.addEventListener("scroll", scrollHandler);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", scrollHandler);
+  //   };
+  // }, [keyword, category]);
+
   return (
-    <Wrapper>
-      {products.map(({ id, main_image, colors, title, price }) => (
-        <Product key={id} href={`/products/${id}`}>
-          <ProductImage src={main_image} />
-          <ProductColors>
-            {colors.map(({ code }) => (
-              <ProductColor $colorCode={`#${code}`} key={code} />
-            ))}
-          </ProductColors>
-          <ProductTitle>{title}</ProductTitle>
-          <ProductPrice>TWD.{price}</ProductPrice>
-        </Product>
-      ))}
-      {isLoading && <Loading type='spinningBubbles' color='#313538' />}
-    </Wrapper>
+    <>
+      <Wrapper>
+        {products
+          ? products.map(({ id, main_image, colors, title, price }) => (
+              <Link href={`/products/${id}`}>
+                <Product key={id}>
+                  <ProductImage src={main_image} />
+                  <ProductColors>
+                    {colors.map(({ code }) => (
+                      <ProductColor $colorCode={`#${code}`} key={code} />
+                    ))}
+                  </ProductColors>
+                  <ProductTitle>{title}</ProductTitle>
+                  <ProductPrice>TWD.{price}</ProductPrice>
+                </Product>
+              </Link>
+            ))
+          : null}
+        {isLoading && <Loading type='spinningBubbles' color='#313538' />}
+      </Wrapper>
+      <div ref={ref}></div>
+    </>
   );
-}
+};
 
 export default Products;
