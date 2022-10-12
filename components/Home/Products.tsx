@@ -96,7 +96,7 @@ const ProductPrice = styled.div`
 const Loading = styled(ReactLoading)`
   margin: 0 auto;
 `;
-const useIntersectionObserver = (ref, options) => {
+const useIntersectionObserver = (ref: any, options: any) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
@@ -134,13 +134,13 @@ const Products = () => {
     isFetching.current = true;
     setIsLoading(true);
 
-    const loading = async (apiJson) => {
+    const loading = async (apiJson: any) => {
       const response = await apiJson;
       if (nextPaging === 0 || savedCategory !== category || keyword) {
         setProducts(response.data);
         setSavedCategory(category);
       } else if (nextPaging !== undefined) {
-        setProducts((prev) => [...prev, ...response.data]);
+        setProducts((prev) => [...prev, ...response.data] as any);
       }
 
       setNextPaging(response.next_paging);
@@ -170,9 +170,15 @@ const Products = () => {
   const onScreen = useIntersectionObserver(ref, { threshold: 0.5 });
 
   useEffect(() => {
-    if (!onScreen) return;
-    if (nextPaging === undefined) return;
-    if (isFetching.current) return;
+    if (!onScreen) {
+      return;
+    }
+    if (nextPaging === undefined) {
+      return;
+    }
+    if (isFetching.current) {
+      return;
+    }
 
     fetchProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -221,7 +227,7 @@ const Products = () => {
                 <Product key={id}>
                   <ProductImage src={main_image} />
                   <ProductColors>
-                    {colors.map(({ code }) => (
+                    {(colors as any).map(({ code }) => (
                       <ProductColor $colorCode={`#${code}`} key={code} />
                     ))}
                   </ProductColors>
@@ -233,7 +239,7 @@ const Products = () => {
           : null}
         {isLoading && <Loading type='spinningBubbles' color='#313538' />}
       </Wrapper>
-      <div ref={ref}></div>
+      <div ref={ref as any} />
     </>
   );
 };

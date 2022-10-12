@@ -12,14 +12,14 @@ export default {
   },
 } as ComponentMeta<typeof Header>;
 
-const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />;
+const Template = (args) => <Header {...args} />;
 
 export const LoggedIn = Template.bind({});
-LoggedIn.args = {
+LoggedIn['args'] = {
   user: {
     name: 'Jane Doe',
   },
 };
 
 export const LoggedOut = Template.bind({});
-LoggedOut.args = {};
+LoggedOut['args'] = {};

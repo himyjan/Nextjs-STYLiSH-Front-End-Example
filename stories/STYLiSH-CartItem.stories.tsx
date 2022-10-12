@@ -12,7 +12,7 @@ export default {
 const Template = (args) => <CartItem {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
+Default["args"]= {
   color: { code: 'FFFFFF', name: '白色' },
   id: 201807242211,
   image: 'https://api.appworks-school.tw/assets/201807242211/main.jpg',

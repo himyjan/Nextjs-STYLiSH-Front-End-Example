@@ -12,7 +12,7 @@ export default {
 const Template = (args) => <CategoryLinkGroup {...args} />;
 
 export const LinkWithActive = Template.bind({});
-LinkWithActive.args = {
+LinkWithActive['args'] = {
   categories: [
     {
       name: 'women',
@@ -31,7 +31,7 @@ LinkWithActive.args = {
 };
 
 export const LinkWithoutActive = Template.bind({});
-LinkWithoutActive.args = {
+LinkWithoutActive['args'] = {
   categories: [
     {
       name: 'women',

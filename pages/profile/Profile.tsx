@@ -38,20 +38,18 @@ function Profile() {
 
   useEffect(() => {
     async function getProfile() {
-      let jwtToken = window.localStorage.getItem('jwtToken');
-
-      if (!jwtToken) {
-        try {
-          jwtToken = await getJwtToken();
-        } catch (e) {
-          window.alert(e.message);
-          return;
-        }
-      }
-      window.localStorage.setItem('jwtToken', jwtToken);
-
-      const { data } = await api.getProfile(jwtToken);
-      setProfile(data);
+      // let jwtToken = window.localStorage.getItem('jwtToken');
+      // if (!jwtToken) {
+      //   try {
+      //     jwtToken = await getJwtToken();
+      //   } catch (e) {
+      //     window.alert(e.message);
+      //     return;
+      //   }
+      // }
+      // window.localStorage.setItem('jwtToken', jwtToken);
+      // const { data } = await api.getProfile(jwtToken);
+      // setProfile(data);
     }
     getProfile();
   }, []);

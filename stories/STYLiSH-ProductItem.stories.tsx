@@ -16,7 +16,7 @@ const Template = (args) => (
 );
 
 export const Default = Template.bind({});
-Default.args = {
+Default['args'] = {
   mainImageUrl: 'https://api.appworks-school.tw/assets/201807202140/main.jpg',
   colorCodes: ['DDFFBB', 'CCCCCC'],
   title: '透肌澎澎防曬襯衫',

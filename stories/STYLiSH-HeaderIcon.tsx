@@ -96,7 +96,7 @@ function HeaderIcon({ icon, iconMobile, cartItemsLength, onClick }) {
         }
       }}
     >
-      <PageLinkIcon
+      {/* <PageLinkIcon
         icon={icon === 'cart' ? cart : icon === 'user' ? profile : null}
         iconMobile={iconMobile === 'cart' ? cartMobile : profileMobile}
       >
@@ -105,7 +105,7 @@ function HeaderIcon({ icon, iconMobile, cartItemsLength, onClick }) {
         >
           {cartItemsLength}
         </PageLinkIconNumber>
-      </PageLinkIcon>
+      </PageLinkIcon> */}
       <PageLinkText>
         {icon === 'cart' ? '購物車' : icon === 'user' ? '會員' : ''}
       </PageLinkText>
