@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+'use client';
+
 import styled from 'styled-components';
 
 import logo from './logo.png';

@@ -1,4 +1,6 @@
 import { useRouter } from 'next/router';
+'use client';
+
 import styled from 'styled-components';
 
 import { state } from '../../types/stateType';

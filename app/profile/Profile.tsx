@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+'use client';
+
 import styled from 'styled-components';
 
 import api from '../../api/api';

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+'use client';
+
 import styled from 'styled-components';
 
 import add from './add.png';
