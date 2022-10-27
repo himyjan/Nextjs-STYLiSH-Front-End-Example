@@ -4,7 +4,7 @@ import Products from './Products';
 function Home() {
   return (
     <>
-      <Carousel />
+      {/* <Carousel /> */}
       {/* <Products /> */}
     </>
   );
