@@ -239,7 +239,7 @@ function Cart() {
 
   function deleteItem(itemIndex: number) {
     const newCartItems = cartItems.filter((_, index) => index !== itemIndex);
-    setCartItems(newCartItems);
+    // setCartItems(newCartItems);
     window.localStorage.setItem('cartItems', JSON.stringify(newCartItems));
     window.alert('已刪除商品');
   }
