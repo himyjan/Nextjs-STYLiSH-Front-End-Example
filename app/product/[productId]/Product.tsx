@@ -230,7 +230,7 @@ function Product() {
         <StoryContent>{product.story}</StoryContent>
       </Story>
       <Images>
-        {product.images.map((image, index) => (
+        {product?.images?.map((image, index) => (
           <Image src={image} key={index} />
         ))}
       </Images>
