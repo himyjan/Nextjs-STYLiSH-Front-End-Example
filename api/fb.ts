@@ -27,7 +27,7 @@ const fb = {
   },
   getLoginStatus() {
     return new Promise((resolve) => {
-      window['FB'].getLoginStatus((response) => {
+      window['FB'].getLoginStatus((response: unknown) => {
         resolve(response);
       });
     });
@@ -35,7 +35,7 @@ const fb = {
   login() {
     return new Promise((resolve) => {
       window['FB'].login(
-        (response) => {
+        (response: unknown) => {
           resolve(response);
         },
         { scope: 'public_profile,email' },
