@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, use } from 'react';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -122,10 +122,10 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const path = router.asPath;
+  const searchParams = useSearchParams();
 
-  const keyword = path.replace('keyword=', '');
-  const category = path.replace('category=', '') || 'all';
+  const keyword = searchParams.get('keyword');
+  const category = searchParams.get('category') ?? 'all';
 
   const [savedCategory, setSavedCategory] = useState(category);
   const [nextPaging, setNextPaging] = useState(0);
@@ -214,28 +214,30 @@ const Products = () => {
   //   };
   // }, [keyword, category]);
 
-  return <>
-    <Wrapper>
-      {products
-        ? products.map(({ id, main_image, colors, title, price }) => (
-            <Link href={`/products/${id}`} legacyBehavior>
-              <Product key={id}>
-                <ProductImage src={main_image} />
-                <ProductColors>
-                  {colors.map(({ code }) => (
-                    <ProductColor $colorCode={`#${code}`} key={code} />
-                  ))}
-                </ProductColors>
-                <ProductTitle>{title}</ProductTitle>
-                <ProductPrice>TWD.{price}</ProductPrice>
-              </Product>
-            </Link>
-          ))
-        : null}
-      {isLoading && <Loading type="spinningBubbles" color="#313538" />}
-    </Wrapper>
-    <div ref={ref}></div>
-  </>;
+  return (
+    <>
+      <Wrapper>
+        {products
+          ? products.map(({ id, main_image, colors, title, price }) => (
+              <Link href={`/products/${id}`} legacyBehavior>
+                <Product key={id}>
+                  <ProductImage src={main_image} />
+                  <ProductColors>
+                    {colors.map(({ code }) => (
+                      <ProductColor $colorCode={`#${code}`} key={code} />
+                    ))}
+                  </ProductColors>
+                  <ProductTitle>{title}</ProductTitle>
+                  <ProductPrice>TWD.{price}</ProductPrice>
+                </Product>
+              </Link>
+            ))
+          : null}
+        {isLoading && <Loading type="spinningBubbles" color="#313538" />}
+      </Wrapper>
+      <div ref={ref}></div>
+    </>
+  );
 };
 
 export default Products;

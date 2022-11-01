@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
 import styled from 'styled-components';
@@ -248,9 +248,8 @@ const categories = [
 function Header() {
   const [inputValue, setInputValue] = useState('');
   const router = useRouter();
-  // const path = router.asPath;
-  // const category = path.replace('category=', '');
-  const category = 'all';
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category') ?? 'all';
 
   useEffect(() => {
     if (category) {
