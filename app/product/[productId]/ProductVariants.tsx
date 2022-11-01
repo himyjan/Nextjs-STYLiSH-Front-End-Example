@@ -1,8 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import {
+  Key,
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactFragment,
+  SetStateAction,
+  useState,
+} from 'react';
 
 import styled from 'styled-components';
+import { Product } from 'types/productType';
 
 import add from './add.png';
 import minus from './minus.png';
@@ -134,19 +143,24 @@ const AddToCart = styled.button`
   }
 `;
 
-function ProductVariants({ product }) {
+type ProductVariantsProp = {
+  product: Product;
+};
+
+function ProductVariants({ product }: any) {
   const [selectedColorCode, setSelectedColorCode] = useState(
     product.colors[0].code,
   );
-  const [selectedSize, setSelectedSize] = useState();
+  const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
   // const cartItemsState = useOutletContext();
-  const cartItems = [];
+  const cartItems: Product[] = [];
   // const setCartItems = cartItemsState[1];
 
-  function getStock(colorCode, size) {
+  function getStock(colorCode: string, size: string) {
     return product.variants.find(
-      (variant) => variant.color_code === colorCode && variant.size === size,
+      (variant: { color_code: string; size: string }) =>
+        variant.color_code === colorCode && variant.size === size,
     ).stock;
   }
 
@@ -159,7 +173,9 @@ function ProductVariants({ product }) {
     const newCartItems = [
       ...cartItems,
       {
-        color: product.colors.find((color) => color.code === selectedColorCode),
+        color: product.colors.find(
+          (color: { code: any }) => color.code === selectedColorCode,
+        ),
         id: product.id,
         image: product.main_image,
         name: product.title,
@@ -177,14 +193,14 @@ function ProductVariants({ product }) {
     <>
       <Option>
         <OptionName hideOnMobile>顏色｜</OptionName>
-        {product.colors.map((color) => (
+        {product.colors.map((color: { code: Key | null | undefined }) => (
           <Color
             key={color.code}
             $isSelected={color.code === selectedColorCode}
             $colorCode={`#${color.code}`}
             onClick={() => {
               setSelectedColorCode(color.code);
-              setSelectedSize(null);
+              setSelectedSize('');
               setQuantity(1);
             }}
           />
@@ -192,7 +208,7 @@ function ProductVariants({ product }) {
       </Option>
       <Option>
         <OptionName hideOnMobile>尺寸｜</OptionName>
-        {product.sizes.map((size) => {
+        {product.sizes.map((size: string) => {
           const stock = getStock(selectedColorCode, size);
           return (
             <Size
