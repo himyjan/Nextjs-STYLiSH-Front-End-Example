@@ -11,6 +11,7 @@ import tappay from '../../api/tappay';
 import Cart from './Cart';
 
 import { Prime } from '../../types/tapPayPrimeType';
+import { ErrorProps } from 'next/error';
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -313,9 +314,9 @@ function Checkout() {
     address: '',
     time: '',
   });
-  const cartItemsState = useOutletContext();
-  const cartItems = cartItemsState[0];
-  const setCartItems = cartItemsState[1];
+  // const cartItemsState = useOutletContext();
+  const cartItems: any[] = [];
+  // const setCartItems = cartItemsState[1];
   const router = useRouter();
   const cardNumberRef = useRef();
   const cardExpirationDateRef = useRef();
@@ -343,12 +344,12 @@ function Checkout() {
     if (!jwtToken) {
       try {
         jwtToken = await getJwtToken();
-      } catch (e) {
+      } catch (e: any) {
         window.alert(e.message);
         return;
       }
     }
-    window.localStorage.setItem('jwtToken', jwtToken);
+    window.localStorage.setItem('jwtToken', jwtToken as string);
 
     if (cartItems.length === 0) {
       window.alert('尚未選購商品');
@@ -365,7 +366,7 @@ function Checkout() {
       return;
     }
 
-    const result: Prime = await tappay.getPrime();
+    const result: Prime = (await tappay.getPrime()) as Prime;
     if (result.status !== 0) {
       window.alert('付款資料輸入有誤');
       return;
@@ -373,7 +374,7 @@ function Checkout() {
 
     const { data } = await api.checkout(
       {
-        prime: result.card.prime,
+        prime: result?.card?.prime,
         order: {
           shipping: 'delivery',
           payment: 'credit_card',
@@ -384,11 +385,11 @@ function Checkout() {
           list: cartItems,
         },
       },
-      jwtToken,
+      jwtToken as string,
     );
     window.alert('付款成功');
-    setCartItems([]);
-    router.push('/thankyou', { state: { orderNumber: data.number } });
+    // setCartItems([]);
+    // router.push('/thankyou', { state: { orderNumber: data.number } });
   }
 
   return (
