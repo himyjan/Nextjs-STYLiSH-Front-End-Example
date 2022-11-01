@@ -4,7 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import styled from 'styled-components';
 
-import { state } from '../../types/stateType';
+import { state } from '../../../types/stateType';
 
 const Wrapper = styled.div`
   padding: 60px 20px;
