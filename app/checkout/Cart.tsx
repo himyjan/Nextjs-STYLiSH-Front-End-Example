@@ -220,24 +220,24 @@ const DeleteButton = styled.div`
 
 function Cart() {
   // const cartItemsState = useOutletContext();
-  const cartItems = cartItemsState[0];
-  const setCartItems = cartItemsState[1];
+  const cartItems: any[] = [];
+  // const setCartItems = cartItemsState[1];
 
-  function changeItemQuantity(itemIndex, itemQuantity) {
+  function changeItemQuantity(itemIndex: number, itemQuantity: number) {
     const newCartItems = cartItems.map((item, index) =>
       index === itemIndex
         ? {
             ...item,
             qty: itemQuantity,
           }
-        : item
+        : item,
     );
-    setCartItems(newCartItems);
+    // setCartItems(newCartItems);
     window.localStorage.setItem('cartItems', JSON.stringify(newCartItems));
     window.alert('已修改數量');
   }
 
-  function deleteItem(itemIndex) {
+  function deleteItem(itemIndex: number) {
     const newCartItems = cartItems.filter((_, index) => index !== itemIndex);
     setCartItems(newCartItems);
     window.localStorage.setItem('cartItems', JSON.stringify(newCartItems));
@@ -267,7 +267,9 @@ function Cart() {
               <ItemQuantityName hideOnDesktop>數量</ItemQuantityName>
               <ItemQuantitySelect
                 value={item.qty}
-                onChange={(e) => changeItemQuantity(index, e.target.value)}
+                onChange={(e) =>
+                  changeItemQuantity(index, e.target.value as unknown as number)
+                }
               >
                 {Array(item.stock)
                   .fill(undefined)
