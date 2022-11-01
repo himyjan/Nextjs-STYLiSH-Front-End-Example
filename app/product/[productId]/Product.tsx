@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useState, use } from 'react';
+import { usePathname } from 'next/navigation';
 
 import styled from 'styled-components';
 
-import api from '../../api/api';
+import api from '../../../api/api';
 import ProductVariants from './ProductVariants';
 
-import { Product as ProductType } from '../../types/productType';
+import { Product as ProductType } from '../../../types/productType';
 
 const Wrapper = styled.div`
   max-width: 960px;
@@ -196,7 +197,9 @@ const Image = styled.img`
 
 function Product() {
   const [product, setProduct] = useState<ProductType>();
-  const { id } = useParams();
+  const pathname = usePathname();
+  console.log(pathname);
+  const id = pathname.replace('/product/', '');
 
   useEffect(() => {
     async function getProduct() {

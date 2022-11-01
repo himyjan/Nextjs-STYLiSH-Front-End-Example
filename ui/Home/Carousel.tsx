@@ -125,10 +125,10 @@ function Carousel() {
           ? prev === campaigns.length - 1
             ? 0
             : prev + 1
-          : -1
+          : -1,
       );
     },
-    pause ? null : 5000
+    pause ? null : 5000,
   );
 
   return (
@@ -139,7 +139,7 @@ function Carousel() {
               $isActive={index === activeCampaignIndex}
               $backgroundImageUrl={picture}
               key={index}
-              href={`/products/${product_id}`}
+              href={`/product/${product_id}`}
               onMouseEnter={() => setPause(true)}
               onMouseLeave={() => setPause(false)}
             >
@@ -148,7 +148,7 @@ function Carousel() {
                   src={picture}
                   alt={''}
                   key={picture}
-                  sizes='100%'
+                  sizes="100%"
                   fill={true}
                 />
                 <StoryContent>

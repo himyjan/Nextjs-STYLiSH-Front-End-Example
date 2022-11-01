@@ -136,17 +136,17 @@ const AddToCart = styled.button`
 
 function ProductVariants({ product }) {
   const [selectedColorCode, setSelectedColorCode] = useState(
-    product.colors[0].code
+    product.colors[0].code,
   );
   const [selectedSize, setSelectedSize] = useState();
   const [quantity, setQuantity] = useState(1);
-  const cartItemsState = useOutletContext();
-  const cartItems = cartItemsState[0];
-  const setCartItems = cartItemsState[1];
+  // const cartItemsState = useOutletContext();
+  const cartItems = [];
+  // const setCartItems = cartItemsState[1];
 
   function getStock(colorCode, size) {
     return product.variants.find(
-      (variant) => variant.color_code === colorCode && variant.size === size
+      (variant) => variant.color_code === colorCode && variant.size === size,
     ).stock;
   }
 
@@ -169,7 +169,7 @@ function ProductVariants({ product }) {
         stock: getStock(selectedColorCode, selectedSize),
       },
     ];
-    setCartItems(newCartItems);
+    // setCartItems(newCartItems);
     window.localStorage.setItem('cartItems', JSON.stringify(newCartItems));
     window.alert('已加入商品');
   }

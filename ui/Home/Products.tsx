@@ -219,7 +219,7 @@ const Products = () => {
       <Wrapper>
         {products
           ? products.map(({ id, main_image, colors, title, price }) => (
-              <Link href={`/products/${id}`} legacyBehavior>
+              <Link href={`/product/${id}`} legacyBehavior>
                 <Product key={id}>
                   <ProductImage src={main_image} />
                   <ProductColors>

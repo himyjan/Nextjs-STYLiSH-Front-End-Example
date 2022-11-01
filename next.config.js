@@ -8,7 +8,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'api.appworks-school.tw',
         port: '',
-        pathname: '/assets/**',
+        pathname: '/**',
       },
     ],
   },
