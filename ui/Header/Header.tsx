@@ -248,8 +248,9 @@ const categories = [
 function Header() {
   const [inputValue, setInputValue] = useState('');
   const router = useRouter();
-  const path = router.asPath;
-  const category = path.replace('category=', '');
+  // const path = router.asPath;
+  // const category = path.replace('category=', '');
+  const category = 'all';
 
   useEffect(() => {
     if (category) {
@@ -259,7 +260,7 @@ function Header() {
 
   return (
     <Wrapper>
-      <Link prefetch={true} href={'/'} passHref={true}>
+      <Link prefetch={true} href={'/'} passHref={true} legacyBehavior>
         <Logo />
       </Link>
       <CategoryLinks>
@@ -289,7 +290,7 @@ function Header() {
         value={inputValue}
       />
       <PageLinks>
-        <Link prefetch={true} href={'/checkout'} passHref={true}>
+        <Link prefetch={true} href={'/checkout'} passHref={true} legacyBehavior>
           <PageLink>
             <PageLinkCartIcon>
               <PageLinkIconNumber>
@@ -299,7 +300,7 @@ function Header() {
             <PageLinkText>購物車</PageLinkText>
           </PageLink>
         </Link>
-        <Link prefetch={true} href={'/profile'} passHref={true}>
+        <Link prefetch={true} href={'/profile'} passHref={true} legacyBehavior>
           <PageLink>
             <PageLinkProfileIcon />
             <PageLinkText>會員</PageLinkText>

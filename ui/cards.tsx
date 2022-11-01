@@ -35,7 +35,7 @@ const StyledA = styled.a`
 `
 
 const StyledLink = ({ href, name }) => (
-  <Link href={href} passHref>
+  <Link href={href} passHref legacyBehavior>
     <StyledA>{name}</StyledA>
   </Link>
 )

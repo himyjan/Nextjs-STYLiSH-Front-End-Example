@@ -214,30 +214,28 @@ const Products = () => {
   //   };
   // }, [keyword, category]);
 
-  return (
-    <>
-      <Wrapper>
-        {products
-          ? products.map(({ id, main_image, colors, title, price }) => (
-              <Link href={`/products/${id}`}>
-                <Product key={id}>
-                  <ProductImage src={main_image} />
-                  <ProductColors>
-                    {colors.map(({ code }) => (
-                      <ProductColor $colorCode={`#${code}`} key={code} />
-                    ))}
-                  </ProductColors>
-                  <ProductTitle>{title}</ProductTitle>
-                  <ProductPrice>TWD.{price}</ProductPrice>
-                </Product>
-              </Link>
-            ))
-          : null}
-        {isLoading && <Loading type="spinningBubbles" color="#313538" />}
-      </Wrapper>
-      <div ref={ref}></div>
-    </>
-  );
+  return <>
+    <Wrapper>
+      {products
+        ? products.map(({ id, main_image, colors, title, price }) => (
+            <Link href={`/products/${id}`} legacyBehavior>
+              <Product key={id}>
+                <ProductImage src={main_image} />
+                <ProductColors>
+                  {colors.map(({ code }) => (
+                    <ProductColor $colorCode={`#${code}`} key={code} />
+                  ))}
+                </ProductColors>
+                <ProductTitle>{title}</ProductTitle>
+                <ProductPrice>TWD.{price}</ProductPrice>
+              </Product>
+            </Link>
+          ))
+        : null}
+      {isLoading && <Loading type="spinningBubbles" color="#313538" />}
+    </Wrapper>
+    <div ref={ref}></div>
+  </>;
 };
 
 export default Products;
