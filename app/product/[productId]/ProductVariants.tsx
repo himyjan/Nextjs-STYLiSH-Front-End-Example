@@ -1,14 +1,6 @@
 'use client';
 
-import {
-  Key,
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactFragment,
-  SetStateAction,
-  useState,
-} from 'react';
+import { useState } from 'react';
 
 import styled from 'styled-components';
 import { Product } from 'types/productType';
