@@ -1,47 +1,51 @@
 const tappay = {
   setupSDK() {
-    window.TPDirect.setupSDK(
-      "12348",
-      "app_pa1pQcKoY22IlnSXq5m5WP5jFKzoRG58VEXpT7wU62ud7mMbDOGzCYIlzzLF",
-      "sandbox"
+    window['TPDirect'].setupSDK(
+      '12348',
+      'app_pa1pQcKoY22IlnSXq5m5WP5jFKzoRG58VEXpT7wU62ud7mMbDOGzCYIlzzLF',
+      'sandbox',
     );
   },
-  setupCard(numberElement, expirationDateElement, ccvElement) {
-    window.TPDirect.card.setup({
+  setupCard(
+    numberElement: undefined,
+    expirationDateElement: undefined,
+    ccvElement: undefined,
+  ) {
+    window['TPDirect'].card.setup({
       fields: {
         number: {
           element: numberElement,
-          placeholder: "**** **** **** ****"
+          placeholder: '**** **** **** ****',
         },
         expirationDate: {
           element: expirationDateElement,
-          placeholder: "MM / YY"
+          placeholder: 'MM / YY',
         },
         ccv: {
           element: ccvElement,
-          placeholder: "後三碼"
-        }
+          placeholder: '後三碼',
+        },
       },
       styles: {
-        ".valid": {
-          color: "green"
+        '.valid': {
+          color: 'green',
         },
-        ".invalid": {
-          color: "red"
-        }
-      }
+        '.invalid': {
+          color: 'red',
+        },
+      },
     });
   },
   canGetPrime() {
-    return window.TPDirect.card.getTappayFieldsStatus().canGetPrime;
+    return window['TPDirect'].card.getTappayFieldsStatus().canGetPrime;
   },
   getPrime() {
     return new Promise((resolve) => {
-      window.TPDirect.card.getPrime((result) => {
+      window['TPDirect'].card.getPrime((result: unknown) => {
         resolve(result);
       });
     });
-  }
+  },
 };
 
 export default tappay;
