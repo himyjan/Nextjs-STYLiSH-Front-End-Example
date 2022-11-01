@@ -1,7 +1,7 @@
-type Color = {
+export type Color = {
   code: string;
   name: string;
-}
+};
 
 export type ApiData = {
   id: number;
@@ -20,9 +20,9 @@ export type ApiData = {
   place: string;
   images: string[];
   sizes: string[];
-}
+};
 
 export type ApiDataJson = {
-  data: ApiData;
+  data: ApiData[];
   next_paging: number;
-}
+};

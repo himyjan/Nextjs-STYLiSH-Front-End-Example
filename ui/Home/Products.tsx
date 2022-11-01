@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import ReactLoading from 'react-loading';
 
 import api from '../../api/api';
+import { ApiDataJson, ApiData, Color } from '../../types/apiDataType';
 
 const Wrapper = styled.div`
   max-width: 1200px;
@@ -98,7 +99,7 @@ const ProductPrice = styled.div`
 const Loading = styled(ReactLoading)`
   margin: 0 auto;
 `;
-const useIntersectionObserver = (ref, options) => {
+const useIntersectionObserver = (ref: any, options: any) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
@@ -119,7 +120,7 @@ const useIntersectionObserver = (ref, options) => {
 };
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ApiData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -132,12 +133,12 @@ const Products = () => {
   const isFetching = useRef(false);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  function fetchProducts() {
+  async function fetchProducts() {
     isFetching.current = true;
     setIsLoading(true);
 
-    const loading = async (apiJson) => {
-      const response = await apiJson;
+    const loading = async (apiJson: ApiDataJson) => {
+      const response: ApiDataJson = await apiJson;
       if (nextPaging === 0 || savedCategory !== category || keyword) {
         setProducts(response.data);
         setSavedCategory(category);
@@ -152,13 +153,13 @@ const Products = () => {
 
     if (keyword) {
       setNextPaging(0);
-      loading(api.searchProducts(keyword, 0));
+      loading(await api.searchProducts(keyword, 0));
     } else {
       if (savedCategory !== category) {
         setNextPaging(0);
-        loading(api.getProducts(category, 0));
+        loading(await api.getProducts(category, 0));
       } else {
-        loading(api.getProducts(category, nextPaging));
+        loading(await api.getProducts(category, nextPaging));
       }
     }
   }
@@ -223,7 +224,7 @@ const Products = () => {
                 <Product key={id}>
                   <ProductImage src={main_image} />
                   <ProductColors>
-                    {colors.map(({ code }) => (
+                    {(colors as Color[]).map(({ code }) => (
                       <ProductColor $colorCode={`#${code}`} key={code} />
                     ))}
                   </ProductColors>
@@ -235,7 +236,7 @@ const Products = () => {
           : null}
         {isLoading && <Loading type="spinningBubbles" color="#313538" />}
       </Wrapper>
-      <div ref={ref}></div>
+      <div ref={ref as any}></div>
     </>
   );
 };
