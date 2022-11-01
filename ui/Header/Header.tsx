@@ -260,7 +260,7 @@ function Header() {
 
   return (
     <Wrapper>
-      <Link prefetch={true} href={'/'} passHref={true} legacyBehavior>
+      <Link href={'/'} passHref={true} legacyBehavior>
         <Logo />
       </Link>
       <CategoryLinks>
@@ -290,7 +290,7 @@ function Header() {
         value={inputValue}
       />
       <PageLinks>
-        <Link prefetch={true} href={'/checkout'} passHref={true} legacyBehavior>
+        <Link href={'/checkout'} passHref={true} legacyBehavior>
           <PageLink>
             <PageLinkCartIcon>
               <PageLinkIconNumber>
@@ -300,7 +300,7 @@ function Header() {
             <PageLinkText>購物車</PageLinkText>
           </PageLink>
         </Link>
-        <Link prefetch={true} href={'/profile'} passHref={true} legacyBehavior>
+        <Link href={'/profile'} passHref={true} legacyBehavior>
           <PageLink>
             <PageLinkProfileIcon />
             <PageLinkText>會員</PageLinkText>
