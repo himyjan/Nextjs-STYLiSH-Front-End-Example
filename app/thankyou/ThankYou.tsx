@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 import styled from 'styled-components';
 
@@ -33,7 +33,7 @@ function ThankYou() {
   const { state } = useLocation();
   const router = useRouter();
 
-  if (!state) return <Navigate to='/' replace />;
+  if (!state) return <Navigate to="/" replace />;
 
   return (
     <Wrapper>

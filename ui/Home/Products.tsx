@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, use } from 'react';
 
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -233,7 +233,7 @@ const Products = () => {
               </Link>
             ))
           : null}
-        {isLoading && <Loading type='spinningBubbles' color='#313538' />}
+        {isLoading && <Loading type="spinningBubbles" color="#313538" />}
       </Wrapper>
       <div ref={ref}></div>
     </>

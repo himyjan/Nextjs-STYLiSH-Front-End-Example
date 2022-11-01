@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, use } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 import styled from 'styled-components';
 
@@ -326,13 +326,13 @@ function Checkout() {
     tappay.setupCard(
       cardNumberRef.current,
       cardExpirationDateRef.current,
-      cardCCVRef.current
+      cardCCVRef.current,
     );
   }, []);
 
   const subtotal = cartItems.reduce(
     (prev, item) => prev + item.price * item.qty,
-    0
+    0,
   );
 
   const freight = 30;
@@ -384,7 +384,7 @@ function Checkout() {
           list: cartItems,
         },
       },
-      jwtToken
+      jwtToken,
     );
     window.alert('付款成功');
     setCartItems([]);
@@ -406,7 +406,8 @@ function Checkout() {
       </GrayBlock>
       <Note>
         ※ 提醒您：
-        <br />● 選擇宅配-請填寫正確收件人資訊，避免包裹配送不達
+        <br />
+        ● 選擇宅配-請填寫正確收件人資訊，避免包裹配送不達
         <br />● 選擇超商-請填寫正確收件人姓名(與證件相符)，避免無法領取
       </Note>
       <form>
@@ -429,7 +430,7 @@ function Checkout() {
             {timeOptions.map((option) => (
               <FormCheck key={option.value}>
                 <FormCheckInput
-                  type='radio'
+                  type="radio"
                   checked={recipient.time === option.value}
                   onChange={(e) => {
                     if (e.target.checked)
@@ -445,15 +446,15 @@ function Checkout() {
           <FormLegend>付款資料</FormLegend>
           <FormGroup>
             <FormLabel>信用卡號碼</FormLabel>
-            <FormControl as='div' ref={cardNumberRef} />
+            <FormControl as="div" ref={cardNumberRef} />
           </FormGroup>
           <FormGroup>
             <FormLabel>有效期限</FormLabel>
-            <FormControl as='div' ref={cardExpirationDateRef} />
+            <FormControl as="div" ref={cardExpirationDateRef} />
           </FormGroup>
           <FormGroup>
             <FormLabel>安全碼</FormLabel>
-            <FormControl as='div' ref={cardCCVRef} />
+            <FormControl as="div" ref={cardCCVRef} />
           </FormGroup>
         </FormFieldSet>
       </form>
