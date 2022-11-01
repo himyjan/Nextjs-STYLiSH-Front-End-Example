@@ -2,7 +2,7 @@
 
 const fb = {
   loadScript() {
-    return new Promise((resolve) => {
+    return new Promise<void>((resolve) => {
       window['fbAsyncInit'] = () => {
         resolve();
       };
@@ -43,7 +43,7 @@ const fb = {
     });
   },
   logout() {
-    return new Promise((resolve) => {
+    return new Promise<void>((resolve) => {
       window['FB'].logout(() => {
         resolve();
       });
