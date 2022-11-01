@@ -1,7 +1,10 @@
+'use client';
+
 import '@/styles/dist.css';
 import React from 'react';
 import GlobalNav from './GlobalNav';
 import StyledComponentsRegistry from './registry';
+import GlobalStyle from './../ui/globalstyles';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return <StyledComponentsRegistry>{children}</StyledComponentsRegistry>;
@@ -13,29 +16,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <head>
-        <title>Next.js Turbopack App Directory Playground</title>
-      </head>
-      <body className="">
-        <Layout>
-          <div className="">
+    <>
+      <html>
+        <head>
+          <title>Next.js Turbopack App Directory Playground</title>
+        </head>
+        <body className="">
+          <Layout>
             <div className="">
-              <GlobalNav />
-            </div>
-
-            <div className="">
+              <div className="">
+                <GlobalNav />
+              </div>
 
               <div className="">
-                {children}
+                <div className="">{children}</div>
               </div>
-            </div>
 
-            <div className="">
+              <div className=""></div>
             </div>
-          </div>
-        </Layout>
-      </body>
-    </html>
+          </Layout>
+        </body>
+      </html>
+      <GlobalStyle />
+    </>
   );
 }
