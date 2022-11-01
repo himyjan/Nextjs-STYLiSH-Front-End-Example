@@ -3,12 +3,7 @@
 import '@/styles/dist.css';
 import React from 'react';
 import GlobalNav from './GlobalNav';
-import StyledComponentsRegistry from './registry';
 import GlobalStyle from './../ui/globalstyles';
-
-export function Layout({ children }: { children: React.ReactNode }) {
-  return <StyledComponentsRegistry>{children}</StyledComponentsRegistry>;
-}
 
 export default function RootLayout({
   children,
@@ -22,19 +17,17 @@ export default function RootLayout({
           <title>Next.js Turbopack App Directory Playground</title>
         </head>
         <body className="">
-          <Layout>
+          <div className="">
             <div className="">
-              <div className="">
-                <GlobalNav />
-              </div>
-
-              <div className="">
-                <div className="">{children}</div>
-              </div>
-
-              <div className=""></div>
+              <GlobalNav />
             </div>
-          </Layout>
+
+            <div className="">
+              <div className="">{children}</div>
+            </div>
+
+            <div className=""></div>
+          </div>
         </body>
       </html>
       <GlobalStyle />

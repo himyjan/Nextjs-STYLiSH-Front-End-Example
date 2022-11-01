@@ -4,18 +4,17 @@ const api = {
   hostname: 'https://api.appworks-school.tw/api/1.0',
   async getProducts(category: string, paging: number) {
     const response = await $fetch(
-      `${this.hostname}/products/${category}?paging=${paging}`
+      `${this.hostname}/products/${category}?paging=${paging}`,
     );
     return await response;
   },
   async getCampaigns() {
     const response = await $fetch(`${this.hostname}/marketing/campaigns`);
-    console.log(response);
     return await response;
   },
   async searchProducts(keyword: string, paging: number) {
     const response = await $fetch(
-      `${this.hostname}/products/search?keyword=${keyword}&paging=${paging}`
+      `${this.hostname}/products/search?keyword=${keyword}&paging=${paging}`,
     );
     return await response;
   },
