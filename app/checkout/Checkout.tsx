@@ -389,7 +389,7 @@ function Checkout() {
     );
     window.alert('付款成功');
     // setCartItems([]);
-    // router.push('/thankyou', { state: { orderNumber: data.number } });
+    router.push(`/thankyou/${data.number}`);
   }
 
   return (
