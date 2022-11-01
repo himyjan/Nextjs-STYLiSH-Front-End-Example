@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import styled from 'styled-components';
-import { Product } from 'types/productType';
+import { Product, Color } from 'types/productType';
 
 import add from './add.png';
 import minus from './minus.png';
@@ -135,10 +135,6 @@ const AddToCart = styled.button`
   }
 `;
 
-type ProductVariantsProp = {
-  product: Product;
-};
-
 function ProductVariants({ product }: any) {
   const [selectedColorCode, setSelectedColorCode] = useState(
     product.colors[0].code,
@@ -185,7 +181,7 @@ function ProductVariants({ product }: any) {
     <>
       <Option>
         <OptionName hideOnMobile>顏色｜</OptionName>
-        {product.colors.map((color: { code: Key | null | undefined }) => (
+        {product.colors.map((color: Color) => (
           <Color
             key={color.code}
             $isSelected={color.code === selectedColorCode}
