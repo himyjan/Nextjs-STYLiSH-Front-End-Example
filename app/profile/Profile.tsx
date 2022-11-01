@@ -46,14 +46,14 @@ function Profile() {
       if (!jwtToken) {
         try {
           jwtToken = await getJwtToken();
-        } catch (e) {
+        } catch (e: any) {
           window.alert(e.message);
           return;
         }
       }
-      window.localStorage.setItem('jwtToken', jwtToken);
+      window.localStorage.setItem('jwtToken', jwtToken as string);
 
-      const { data } = await api.getProfile(jwtToken);
+      const { data } = await api.getProfile(jwtToken as string);
       setProfile(data);
     }
     getProfile();
