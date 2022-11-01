@@ -447,15 +447,15 @@ function Checkout() {
           <FormLegend>付款資料</FormLegend>
           <FormGroup>
             <FormLabel>信用卡號碼</FormLabel>
-            <FormControl as="div" ref={cardNumberRef} />
+            <FormControl as="div" ref={cardNumberRef as any} />
           </FormGroup>
           <FormGroup>
             <FormLabel>有效期限</FormLabel>
-            <FormControl as="div" ref={cardExpirationDateRef} />
+            <FormControl as="div" ref={cardExpirationDateRef as any} />
           </FormGroup>
           <FormGroup>
             <FormLabel>安全碼</FormLabel>
-            <FormControl as="div" ref={cardCCVRef} />
+            <FormControl as="div" ref={cardCCVRef as any} />
           </FormGroup>
         </FormFieldSet>
       </form>
