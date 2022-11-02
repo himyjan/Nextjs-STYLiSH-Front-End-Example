@@ -4,8 +4,6 @@ import { useEffect, useRef, useState, use } from 'react';
 
 import Link from 'next/link';
 
-import Image from 'next/image';
-
 import styled from 'styled-components';
 
 import api from '../../api/api';
@@ -144,13 +142,6 @@ function Carousel() {
               onMouseLeave={() => setPause(false)}
             >
               <Story>
-                <Image
-                  src={picture}
-                  alt={''}
-                  key={picture}
-                  sizes="100%"
-                  fill={true}
-                />
                 <StoryContent>
                   {(story as string).split('\r\n').slice(0, 3).join('\r\n')}
                 </StoryContent>
