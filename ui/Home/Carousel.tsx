@@ -25,7 +25,7 @@ type CampaignProp = {
 
 const Campaign = styled.a<CampaignProp>`
   width: 100%;
-  height: 100%;
+  height: 500px;
   position: absolute;
   background-size: cover;
   background-position: center;
@@ -35,6 +35,9 @@ const Campaign = styled.a<CampaignProp>`
   transition: opacity 1s;
   text-decoration: none;
   color: #070707;
+  @media screen and (max-width: 1279px) {
+    height: 185px;
+  }
 `;
 
 const Story = styled.div`
