@@ -11,6 +11,7 @@ import api from '../../api/api';
 import { useInterval } from 'usehooks-ts';
 
 const Wrapper = styled.div`
+  width: 100%;
   height: 500px;
   position: relative;
   @media screen and (max-width: 1279px) {
