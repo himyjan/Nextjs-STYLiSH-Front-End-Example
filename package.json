@@ -24,7 +24,7 @@
     "ohmyfetch": "^0.4.20",
     "react": "^18.3.0-next-2ac77aab9-20221029",
     "react-dom": "^18.3.0-next-2ac77aab9-20221029",
-    "react-hook-form": "^7.38.0",
+    "react-hook-form": "^7.39.0",
     "react-loading": "^2.0.3",
     "styled-components": "^6.0.0-beta.5",
     "styled-jsx": "^5.1.0",
@@ -34,7 +34,7 @@
     "zod": "^3.19.1"
   },
   "devDependencies": {
-    "@types/node": "^18.11.8",
+    "@types/node": "^18.11.9",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "autoprefixer": "^10.4.13",
