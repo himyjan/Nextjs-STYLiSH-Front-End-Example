@@ -198,7 +198,7 @@ const Image = styled.img`
 function Product() {
   const [product, setProduct] = useState<ProductType>();
   const pathname = usePathname();
-  const id = pathname.replace('/product/', '');
+  const id = pathname?.replace('/product/', '');
 
   useEffect(() => {
     async function getProduct() {

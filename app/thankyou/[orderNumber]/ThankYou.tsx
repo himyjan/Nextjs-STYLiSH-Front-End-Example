@@ -32,7 +32,7 @@ const BackButton = styled.button`
 function ThankYou() {
   const pathname = usePathname();
   const router = useRouter();
-  const orderNumber = pathname.replace('/thankyou/', '');
+  const orderNumber = pathname?.replace('/thankyou/', '');
 
   return (
     <Wrapper>
