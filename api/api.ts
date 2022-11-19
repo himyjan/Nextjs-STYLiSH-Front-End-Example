@@ -1,29 +1,29 @@
-import { $fetch } from 'ohmyfetch';
+import { ofetch } from 'ofetch';
 
 const api = {
   hostname: 'https://api.appworks-school.tw/api/1.0',
   async getProducts(category: string, paging: number) {
-    const response = await $fetch(
+    const response = await ofetch(
       `${this.hostname}/products/${category}?paging=${paging}`,
     );
     return await response;
   },
   async getCampaigns() {
-    const response = await $fetch(`${this.hostname}/marketing/campaigns`);
+    const response = await ofetch(`${this.hostname}/marketing/campaigns`);
     return await response;
   },
   async searchProducts(keyword: string, paging: number) {
-    const response = await $fetch(
+    const response = await ofetch(
       `${this.hostname}/products/search?keyword=${keyword}&paging=${paging}`,
     );
     return await response;
   },
   async getProduct(id: string) {
-    const response = await $fetch(`${this.hostname}/products/details?id=${id}`);
+    const response = await ofetch(`${this.hostname}/products/details?id=${id}`);
     return await response;
   },
   async checkout(data: {}, jwtToken: string) {
-    const response = await $fetch(`${this.hostname}/order/checkout`, {
+    const response = await ofetch(`${this.hostname}/order/checkout`, {
       body: JSON.stringify(data),
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ const api = {
     return await response;
   },
   async signin(data: {}) {
-    const response = await $fetch(`${this.hostname}/user/signin`, {
+    const response = await ofetch(`${this.hostname}/user/signin`, {
       body: JSON.stringify(data),
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const api = {
     return await response;
   },
   async getProfile(jwtToken: string) {
-    const response = await $fetch(`${this.hostname}/user/profile`, {
+    const response = await ofetch(`${this.hostname}/user/profile`, {
       headers: new Headers({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${jwtToken}`,
