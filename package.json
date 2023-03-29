@@ -19,7 +19,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.0.0",
     "clsx": "^1.2.1",
-    "concurrently": "^7.6.0",
+    "concurrently": "^8.0.0",
     "next": "^13.2.4",
     "ofetch": "^1.0.1",
     "react": "next",
