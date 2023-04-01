@@ -183,8 +183,8 @@ const Products = () => {
   }, [onScreen]);
 
   // useEffect(() => {
-  //  async function fetchProducts() {
-  //     isFetching = true;
+  //   async function fetchProducts() {
+  //     isFetching.current = true;
   //     setIsLoading(true);
   //     const response = keyword
   //       ? await api.searchProducts(keyword, nextPaging)
@@ -194,8 +194,8 @@ const Products = () => {
   //     } else {
   //       setProducts((prev) => [...prev, ...response.data]);
   //     }
-  //     nextPaging = response.next_paging;
-  //     isFetching = false;
+  //     setNextPaging(response.next_paging);
+  //     isFetching.current = false;
   //     setIsLoading(false);
   //   }
   //   async function scrollHandler() {

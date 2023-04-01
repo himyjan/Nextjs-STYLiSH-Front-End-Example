@@ -1,3 +1,5 @@
+import { PluginAPI } from 'tailwindcss/types/config';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -17,7 +19,7 @@ module.exports = {
           violet: '#7928CA',
         },
       },
-      keyframes: ({ theme }) => ({
+      keyframes: ({ theme }: { theme: PluginAPI["theme"] }) => ({
         rerender: {
           '0%': {
             'border-color': theme('colors.vercel.pink'),
