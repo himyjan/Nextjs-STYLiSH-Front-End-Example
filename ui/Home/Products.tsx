@@ -127,7 +127,7 @@ const Products = () => {
   const searchParams = useSearchParams();
 
   const keyword = searchParams.get('keyword');
-  const category = searchParams.get('category') ?? keyword == null ? 'all' : 'keyword';
+  const category = searchParams.get('category') ?? (keyword == null ? 'all' : 'keyword');
 
   const [savedCategory, setSavedCategory] = useState(category);
   const [nextPaging, setNextPaging] = useState(0);
@@ -167,6 +167,7 @@ const Products = () => {
 
   useEffect(() => {
     fetchProducts();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keyword, category]);
 
