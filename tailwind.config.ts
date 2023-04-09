@@ -1,5 +1,4 @@
 import { type Config } from "tailwindcss";
-import { PluginAPI } from 'tailwindcss/types/config';
 
 export default {
   content: [
@@ -19,7 +18,7 @@ export default {
           violet: '#7928CA',
         },
       },
-      keyframes: ({ theme }: { theme: PluginAPI["theme"] }) => ({
+      keyframes: ({ theme }) => ({
         rerender: {
           '0%': {
             'border-color': theme('colors.vercel.pink'),
