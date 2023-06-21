@@ -17,7 +17,7 @@ export default function RootLayout({
       <html>
         <head>
           <title>STYLiSH</title>
-          <Script src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0" />
+          <Script src="https://js.tappaysdk.com/sdk/tpdirect/v5.15.0" />
         </head>
         <body className="">
           <div className="">
