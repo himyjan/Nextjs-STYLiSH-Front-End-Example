@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useContext, KeyboardEvent } from 'react';
+import { useEffect, useState, useContext, ChangeEvent, KeyboardEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
@@ -293,7 +293,7 @@ function Header() {
             router.push(`/?keyword=${inputValue}`);
           }
         }}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
         value={inputValue}
       />
       <PageLinks>
