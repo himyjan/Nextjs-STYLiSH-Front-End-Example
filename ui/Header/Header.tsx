@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useContext, KeyboardEventHandler } from 'react';
+import { useEffect, useState, useContext, KeyboardEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
@@ -288,7 +288,7 @@ function Header() {
         ))}
       </CategoryLinks>
       <SearchInput
-        onKeyPress={(e: KeyboardEventHandler<HTMLInputElement>) => {
+        onKeyPress={(e: KeyboardEvent<HTMLInputElement>) => {
           if (e.key === 'Enter') {
             router.push(`/?keyword=${inputValue}`);
           }
