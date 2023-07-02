@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useContext } from 'react';
+import { useEffect, useRef, useState, useContext, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 import styled from 'styled-components';
@@ -425,7 +425,7 @@ function Checkout() {
               <FormControl
                 id={input.key}
                 value={recipient[input.key as keyof typeof recipient]}
-                onChange={(e) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setRecipient({ ...recipient, [input.key]: e.target.value })
                 }
               />
@@ -439,7 +439,7 @@ function Checkout() {
                 <FormCheckInput
                   type="radio"
                   checked={recipient.time === option.value}
-                  onChange={(e) => {
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
                     if (e.target.checked)
                       setRecipient({ ...recipient, time: option.value });
                   }}
