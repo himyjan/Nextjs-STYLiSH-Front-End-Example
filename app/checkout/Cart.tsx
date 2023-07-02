@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext } from 'react';
+import { useContext, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 import trash from './trash.png';
@@ -274,7 +274,7 @@ function Cart() {
               <ItemQuantityName hideOnDesktop>數量</ItemQuantityName>
               <ItemQuantitySelect
                 value={item.qty}
-                onChange={(e) =>
+                onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                   changeItemQuantity(index, e.target.value as unknown as number)
                 }
               >
