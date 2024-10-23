@@ -3,7 +3,7 @@
 import { useContext, useState } from 'react';
 
 import styled from 'styled-components';
-import { Product, Color } from 'types/productType';
+import { Product, type Color } from 'types/productType';
 
 import add from './add.png';
 import minus from './minus.png';
