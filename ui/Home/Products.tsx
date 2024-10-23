@@ -236,7 +236,7 @@ const Products = () => {
             </Link>
           ))
           : null}
-        {isLoading && <Loading type="spinningBubbles" color="#313538" />}
+        {/*isLoading && <Loading type="spinningBubbles" color="#313538" />*/}
       </Wrapper>
       <div ref={ref as unknown as React.LegacyRef<HTMLDivElement>}></div>
     </>
