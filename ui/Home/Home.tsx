@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Carousel from './Carousel';
 import Products from './Products';
 
@@ -5,7 +6,9 @@ function Home() {
   return (
     <>
       <Carousel />
-      <Products />
+      <Suspense>
+        <Products />
+      </Suspense>
     </>
   );
 }
