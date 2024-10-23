@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import styled from 'styled-components';
-import ReactLoading from 'react-loading';
+import { Oval } from 'react-loader-spinner';
 
 import api from '../../api/api';
 import { ApiDataJson, ApiData, Color } from '../../types/apiDataType';
@@ -97,7 +97,7 @@ const ProductPrice = styled.div`
   }
 `;
 
-const Loading = styled(ReactLoading)`
+const Loading = styled(Oval)`
   margin: 0 auto;
 `;
 const useIntersectionObserver = (ref: MutableRefObject<undefined>, options: {}) => {
@@ -236,7 +236,7 @@ const Products = () => {
             </Link>
           ))
           : null}
-        {/*isLoading && <Loading type="spinningBubbles" color="#313538" />*/}
+        {isLoading && <Loading color={"#313538"} width={80} />}
       </Wrapper>
       <div ref={ref as unknown as React.LegacyRef<HTMLDivElement>}></div>
     </>
