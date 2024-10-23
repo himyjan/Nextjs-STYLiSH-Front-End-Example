@@ -12,11 +12,7 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-  },
-  experimental: {
-    // Required:
-    appDir: true,
-  },
+  }
 };
 
 module.exports = nextConfig;
