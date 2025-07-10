@@ -31,7 +31,7 @@
     "styled-reset": "^4.5.2",
     "use-count-up": "^3.0.1",
     "usehooks-ts": "^3.1.0",
-    "zod": "^3.23.8"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
