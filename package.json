@@ -28,7 +28,7 @@
     "react-loader-spinner": "^6.1.6",
     "styled-components": "^6.1.13",
     "styled-jsx": "^5.1.6",
-    "styled-reset": "^4.5.2",
+    "styled-reset": "^5.0.0",
     "use-count-up": "^3.0.1",
     "usehooks-ts": "^3.1.0",
     "zod": "^4.0.0"
