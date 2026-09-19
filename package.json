@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "tailwind": "tailwindcss -i styles/globals.css -o styles/dist.css",
+    "tailwind": "npx @tailwindcss/cli -i styles/globals.css -o styles/dist.css",
     "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
     "postinstall": "npm run tailwind"
   },
@@ -17,33 +17,32 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.9.0",
+    "@hookform/resolvers": "^5.0.0",
     "clsx": "^2.1.1",
-    "concurrently": "^9.0.1",
-    "next": "^15.0.0",
+    "concurrently": "^10.0.0",
+    "next": "^16.0.0",
     "ofetch": "^1.4.1",
-    "react": "next",
-    "react-dom": "next",
-    "react-hook-form": "^7.53.1",
-    "react-loader-spinner": "^6.1.6",
-    "styled-components": "^6.1.13",
-    "styled-jsx": "^5.1.6",
-    "styled-reset": "^4.5.2",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-hook-form": "^7.88.0",
+    "react-loader-spinner": "^8.0.2",
+    "styled-components": "^6.5.3",
+    "styled-jsx": "^5.1.7",
+    "styled-reset": "^5.0.0",
     "use-count-up": "^3.0.1",
     "usehooks-ts": "^3.1.0",
-    "zod": "^3.23.8"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.16.14",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.1",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.13.0",
-    "eslint-config-next": "^15.0.0",
-    "postcss": "^8.4.47",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^10.0.0",
+    "eslint-config-next": "^16.0.0",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.8",
-    "tailwindcss": "^3.4.14",
-    "typescript": "^5.6.3"
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^7.0.0"
   }
 }
